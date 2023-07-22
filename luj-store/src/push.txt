@@ -1,0 +1,1 @@
+git push https://github.com/bandelefemi/luj-admin.git luj-admin:main

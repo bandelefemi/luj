@@ -1,0 +1,59 @@
+import { useState } from "react";
+import "./widgetLg.css";
+import { useEffect } from "react";
+import { userRequest } from "../../requestMethods";
+import {format} from 'timeago.js'
+
+export default function WidgetLg() {
+
+
+  const [orders, setOrders] = useState({})
+
+  useEffect(()=> {
+    const getOrders = async()=>{
+      try{
+        const res = await userRequest('/order')
+        setOrders(res.data)
+      }catch{}
+    }
+    getOrders()
+  }, [])
+
+
+  
+  const Button = ({ type }) => {
+    return <button className={"widgetLgButton " + type}>{type}</button>;
+  };
+  return (
+    <div className="widgetLg">
+      <h3 className="widgetLgTitle">Latest transactions</h3>
+      <table className="widgetLgTable">
+        <tr className="widgetLgTr">
+          <th className="widgetLgTh">Customer</th>
+          <th className="widgetLgTh">Date</th>
+          <th className="widgetLgTh">Amount</th>
+          <th className="widgetLgTh">Status</th>
+        </tr>
+        {orders.length > 0 && orders?.map(order => (
+
+          <tr key={order._id} className="widgetLgTr">
+          <td className="widgetLgUser">
+            <img
+              src={order.img || '/no-avi.jpg'}
+              alt=""
+              className="widgetLgImg"
+              />
+            <span className="widgetLgName">{order._id}</span>
+          </td>
+          <td className="widgetLgDate">{format(order.createdAt)}</td>
+          <td className="widgetLgAmount">&#8358;{order.amount}</td>
+          <td className="widgetLgStatus">
+            <Button type={order.status} />
+          </td>
+        </tr>
+              ))}
+        
+      </table>
+    </div>
+  );
+}

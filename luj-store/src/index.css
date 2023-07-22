@@ -1,0 +1,30 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Urbanist', sans-serif;
+  margin: 0;
+}
+
+@layer components {
+    .register-form {
+    @apply border-b border-gray-500 placeholder:text-[0.6rem] text-gray-500 w-full bg-transparent outline-none my-3 px-2
+  }
+  .reg-btn {
+    @apply text-[0.7rem] text-gray-500 border  m-3 py-2 border-gray-600 w-full flex justify-center items-center
+  }
+}
